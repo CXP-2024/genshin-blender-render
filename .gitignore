@@ -11,3 +11,12 @@ local/
 outputs/
 *.local.json
 .env*
+*.vmd
+*.mp4
+*.mkv
+*.wav
+*.onnx
+*.pth
+*.pt
+*.pkl
+*.bin

@@ -1,0 +1,41 @@
+# 动漫 4K 超分与 60fps 插帧
+
+从认可成片接续，保留材质、光照、运镜、音轨和原时长。先找已有模型与成功脚本，不因“本地模型”就默认允许本机 GPU；资源限制以当前任务约定为准。本次本机仅短测 CPU，随后按用户授权迁移至远端 3090。
+
+## 已验证组合
+
+- Real-CUGAN `models-pro/up3x-no-denoise`，`-s 3 -n 0 -t 256`，把 1280×720 原始帧直接变成 3840×2160。这里是权重驱动超分，不是 Lanczos 放大。
+- 已有 RIFE HDv3 模型和与它配套的 IFNet 源码，加载参数必须 strict 匹配；记录权重哈希，不能只记录“RIFE”。本次原始权重 SHA-256 为 `fe854fc8996547c953f732aaa3b78cae76cc0a12833ae856ea0749c4c570d7d8`。本仓库不分发来源/许可未独立确认的权重或源码，使用用户已有资源。
+- Real-CUGAN 上游：https://github.com/nihui/realcugan-ncnn-vulkan ；RIFE 项目入口：https://github.com/hzwer/ECCV2022-RIFE 。链接不表示本次旧模型与上游当前版本可混用。
+
+本次 ncnn CLI 的 CPU 选项为 `-g -1`；它启动时会打印 GPU 枚举，打印名称不证明进行了 GPU 运算。云端为 `-g 0 -j 2:1:2`，还需检查实际设备与利用率。
+
+## 保留超分细节的插帧
+
+先超分全部 180 张原始帧，再用 RIFE 在源 720p 尺寸估计每对帧的中点 flow 与 sigmoid mask。将 4 通道 flow 双线性放大 3 倍并将位移值乘 3，将 mask 放大至 4K：
+
+```text
+L = remap(SR0, grid + flow_xy_0 * 3, border=replicate)
+R = remap(SR1, grid + flow_xy_1 * 3, border=replicate)
+middle = mask * L + (1-mask) * R
+```
+
+RIFE 输出的是中点到两端图像的反向采样位移，不再乘 .5。不要用相邻图片简单平均冒充神经插帧。该适配适用于本次 IFNet“flow+mask 融合、无额外 refinement”实现；其他 RIFE 变体若有额外修复网络，须使用其对应推理方式。
+
+原生 30fps 的帧保留在偶数索引；179 对帧产生中间帧，末尾再保持 1/60 秒，得到 360 帧、6 秒。最后的保持帧及切镜保持不代表整段以复制帧凑到 60fps。
+
+## 切镜、编码与交付
+
+从原 VMD 提取相邻 1 帧的相机 key 作为硬切点，不能把跨镜头的两个人脸插成过渡。辅助脚本：
+
+```text
+python scripts/vmd_camera_cuts.py camera.vmd --start-frame 240 --frame-count 180
+```
+
+`--start-frame` 是源 VMD 的零基起始帧。本次源区间 `[240,420)`，对应 Blender 241..420；输出 pair 15、44、80、130、175。已知背景/闪白硬切另行加入；本片还有 pair 140。图像 SSIM 低值可补充检测，但同背景下的相机硬切可能被 SSIM 漏掉，不能只靠它。
+
+编码采用 H.264、CRF20、medium、yuv420p；将 BGR/RGB 明确转换到 BT.709，再写入匹配的颜色元数据，不能只改标签。原 AAC 音轨直接复制，保持 6 秒，不改变音高或播放速度。其他输入若不是可复制音频格式，再显式选择编码器。
+
+检查实际 3840×2160、60/1、360 帧、6 秒，整段 CPU 解码，回收后核对 SHA-256。抽查原生超分帧与插入中点的脸、手、细描边、字幕和快速飘带。当前试版已获用户认可，但快速飘带和细线仍可出现少量插帧重影；不称“完全无伪影”，也不把超分插帧称为原生 4K60 重渲染。
+
+云端 NVIDIA Vulkan ICD、显卡 UUID 复核、预算及回收关机遵循 Paratera skill。Blender EGL 正常不证明 ncnn Vulkan 正常；输出 `llvmpipe` 时停止这次软件渲染，不继续浪费时间。

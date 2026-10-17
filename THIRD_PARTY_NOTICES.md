@@ -11,3 +11,5 @@
   沃雅妮莎：https://www.aplaybox.com/details/model/ZXUKJHsPeCEo
 
 用户自行按相应许可取得上述依赖。本仓库不提供模型、纹理、第三方 shader 的镜像，亦不上传包含它们的 packed .blend。不会附带登录状态、签名下载地址、SSH 配置或云端密钥。
+
+动画与后处理流程另引用 VMDPhysicsBake（https://github.com/yyc-git/VMDPhysicsBake）、Real-CUGAN ncnn Vulkan（https://github.com/nihui/realcugan-ncnn-vulkan）与 RIFE（https://github.com/hzwer/ECCV2022-RIFE）。本仓库只保存自编验证工具、流程和验证指标，不分发这些项目的修改版源码、可执行文件或权重。工程中已有 RIFE 旧模型的哈希仅用于匹配用户的合法本地资源，不代表其许可或来源已由本仓库独立确认。

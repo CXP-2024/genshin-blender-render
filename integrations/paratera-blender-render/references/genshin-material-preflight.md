@@ -10,3 +10,5 @@
 - GPU 占用、计费预算、停止/删除实例、队列恢复仍按本 skill 和当前用户授权执行。本检查不启动机器或下载模型。
 
 现有 bench_scene.py / GCP OptiX 示例仅测试硬件，不用于转换原神场景。提交已打包 review.blend 时使用固定版本 Blender 的 `--background scene.blend --python-exit-code 1 --render-frame 1`，不传 `--engine CYCLES`；先确认后台 EGL/OpenGL 可用及 EEVEE 实际使用 GPU。
+
+认可场景接续动画或超分插帧时，读取 genshin-blender-render 的 [无界面物理](https://github.com/CXP-2024/genshin-blender-render/blob/main/references/headless-physics.md) 与 [4K60 后处理](https://github.com/CXP-2024/genshin-blender-render/blob/main/references/upscale-interpolate.md)。保留人体动作、材质、打光和原相机；动态骨回灌后不叠加 Blender 物理。超分/插帧验收与原始物理验收分开记录，不自动扩展双人同场解算。

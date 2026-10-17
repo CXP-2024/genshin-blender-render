@@ -1,4 +1,4 @@
 interface:
   display_name: "原神 Blender 三渲二"
-  short_description: "复现原神人物材质，检查脸部阴影、眼睛、服饰 Ramp 与细描边"
-  default_prompt: "使用 $genshin-blender-render 为原神角色建立可复现的材质基线，先检查资源和节点，再输出全身及脸部多光向试片。"
+  short_description: "复现原神人物材质、衣发物理与原版运镜，接续超分和插帧交付"
+  default_prompt: "使用 $genshin-blender-render 从认可的原神渲染场景接续，保留材质与运镜，按需要完成无界面衣发物理、全身检查和超分插帧交付。"

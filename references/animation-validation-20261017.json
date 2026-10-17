@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-17",
+  "status": "accepted_by_user_for_this_preview",
+  "scope": "Independent per-character PMX-compatible physics, original Mio camera and accepted materials/light; six-second preview plus 4K60 postprocessing trial.",
+  "versions": {
+    "blender": "4.2.23 LTS",
+    "morningstar": "1.0.2.1 / Festivity v3.4",
+    "physics_entry": "bake-fixed-timeline.mjs useLoader=true; matching local modified Helper libraries",
+    "physics_source_sha256": {
+      "src/tool/bake-fixed-timeline.mjs": "5c62c4f85372ee1160afa8ec1eac07f80293f7a64c36b62b9237273f3f5ffdc3",
+      "lib/MMDLoader.js": "e2b8f30777ce0b5a03c36677ac28a9ed9a9f1858b5cfc7e0590be1102b506e46",
+      "lib/MMDAnimationHelper.js": "49708d51733adda4444cf72c8f947b082e8c35fe2b1a53d64f8be4e63408ab93",
+      "lib/MMDPhysics.js": "8711d4ea7c7a802f6d30c275a9591286c168c6a2aa5c583908219fa10d9b77b7"
+    }
+  },
+  "physics": {
+    "frames_baked": 421,
+    "frames_rendered_per_character": 180,
+    "blender_frame_range_inclusive": [
+      241,
+      420
+    ],
+    "source_seconds_half_open": [
+      8,
+      14
+    ],
+    "scale": 0.08,
+    "backend": "PMX / MMDLoader / MMDAnimationHelper / Ammo.js, not official MMD.exe",
+    "odette": {
+      "physics_bones": 467,
+      "max_body_world_error_m": 1.9286816799879373e-06,
+      "max_import_world_error_m": 1.5929613131156882e-06,
+      "repeat_identical": true
+    },
+    "vodyanitsa": {
+      "static_body_samples": 462,
+      "max_body_position_error_m": 1.6168005621611237e-06,
+      "max_import_world_error_m": 1.980733733852276e-06,
+      "repeat_identical": true,
+      "body_action_unchanged": true,
+      "no_local_gui": true,
+      "no_local_gpu_render": true,
+      "backend": "Headless PMX / VMDPhysicsBake / Ammo.js; not MMD.exe"
+    },
+    "shared_world": "deferred by user; experimental result not used in delivered videos",
+    "parameters": {
+      "unitStep": 0.015384615384615385,
+      "maxStepNum": 3,
+      "gravity": [
+        0,
+        -98,
+        0
+      ],
+      "warmupFrames": 60,
+      "solverIterations": 10,
+      "physicsUpdateInterval": 1
+    }
+  },
+  "preservation": {
+    "material_and_body_curve_fingerprints_unchanged": true,
+    "camera": {
+      "compared_camera_frames": 360,
+      "max_position_difference_m": 0.0,
+      "focal_lengths_identical": true,
+      "source": "previous accepted r2 original Mio camera with same -0.20m height wrapper"
+    },
+    "light_direction_euler_degrees": [
+      -65,
+      0,
+      18
+    ],
+    "camera_height_wrapper_m": -0.2
+  },
+  "postprocess": {
+    "sha256": "24be1c66ee0783958fbcabe26d03760ac20621622e611e785b739e8ba757a754",
+    "bytes": 37972588,
+    "resolution": [
+      3840,
+      2160
+    ],
+    "fps": 60,
+    "frames": 360,
+    "duration_seconds": 6.0,
+    "source_sha256": "859bd6ae63d135edabd0763702e3978273a0b3c26a53ca9c8cf90e6efa7b5a48",
+    "sr": "Existing local Real-CUGAN models-pro/up3x-no-denoise, 3x, no denoise",
+    "interpolation": "Local RIFE HDv3 FP16: neural flow and mask at native 720p, 3x flow applied to 4K SR frames",
+    "cuts_held": [
+      15,
+      44,
+      80,
+      130,
+      140,
+      175
+    ],
+    "final_hold_frames": 1,
+    "audio": "original AAC copied",
+    "full_decode": "passed"
+  },
+  "limitations": [
+    "Acceptance applies to this short preview, not arbitrary models or choreography.",
+    "Small interpolation ghosting remains on fast ribbons/fine lines.",
+    "No assertion of official MMD.exe equivalence or zero self/inter-character penetration."
+  ],
+  "resource_scope": {
+    "local_gui_launched": false,
+    "local_gpu_compute": false,
+    "render_and_postprocess_gpu": "remote RTX 3090",
+    "instance_confirmed_stopped": true
+  }
+}

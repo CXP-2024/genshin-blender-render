@@ -1,6 +1,6 @@
 ---
 name: genshin-blender-render
-description: 使用 Blender 与 Morningstar Festivity 渲染原神角色，检查 PMX 与游戏贴图映射、脸部 UV/SDF、眼睛透明层、服饰 Ramp 和 MMD 原生细描边；用于角色三渲二材质复现、灰白或黑块故障诊断、全身与脸部关键帧试片。云端机器管理另用对应 render skill。
+description: 使用 Blender 与 Morningstar Festivity 复现原神人物三渲二材质、脸部阴影、眼睛与 MMD 细描边，接续无界面 PMX 衣发物理、原 VMD 运镜，以及动漫超分和插帧视频交付。云端机器管理另用对应 render skill。
 ---
 
 # 原神角色三渲二渲染
@@ -35,5 +35,14 @@ description: 使用 Blender 与 Morningstar Festivity 渲染原神角色，检�
 逐张查看全身、脸、眼睛、衣料、金属、发丝与描边；按验收清单记录实际通过范围。光向相同的修复前后图才可比较。不要靠关闭金属/AO/阴影或整体提亮掩盖缺图。
 
 用户认可静态结果后再扩展舞蹈、表情、眨眼、转头、物理与动画时序。静态通过不代表完整游戏视差和物理通过。
+
+## 5. 从认可场景接续动画
+
+- 用户要求保持材质、打光、动作或运镜时，从认可场景副本接续，不重新跑材质转换。记录节点、人体动作曲线与相机动画指纹，物理回灌只替换动态骨。
+- 衣发解算读 [无界面物理](references/headless-physics.md)：已验证路线为 evaluated FK → 原 PMX 刚体/关节 → VMDPhysicsBake / Ammo.js → 位置与旋转 JSON → Blender 动态骨曲线。它是 MMD 兼容实现，不称为官方 MMD.exe。
+- 超分与插帧读 [4K / 60fps 后处理](references/upscale-interpolate.md)。采用已有匹配模型；切镜保留硬切。超分不是原生高分辨率重渲染，插帧也不会修复物理穿模。
+- 用户限制本机 GUI 或 GPU 时，导出、解算、校验用无界面 CPU；图形渲染及 GPU 后处理交给已获授权的远端。不要因检测到本地 GPU 空闲而改变约定。
+- 2026-10-17 的两人独立解算预览及其 4K / 60fps 试版已获用户认可，见 [动画验证记录](references/animation-validation-20261017.json)。快速飘带仍有少量插帧重影；双人同场物理被用户暂缓，不作为默认扩展或已验收能力。
+- 若当前安装附带 `local/profile.md`，接续同一工程时先读其中的已验证脚本和资源路径；该文件仅保存本机索引，不随公开仓库发布。
 
 本地调度读取 render-submit-queue；Paratera/GCP 分别读取对应 skill。先验证场景并打包资源，再提交既有队列。费用、实例启动/停止及 GPU 占用检查遵守对应技能和当前用户授权。

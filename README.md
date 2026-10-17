@@ -2,7 +2,7 @@
 
 给 Codex 使用的原神 Blender 三渲二 skill：将一次实际修复整理为可复现的材质流程，覆盖脸 UV、眼睛透明层、服饰 Ramp 和 mmd_tools 原生细描边。
 
-已验证：Blender 4.2.23 LTS + Morningstar v1.0.2.1（内置 Festivity v3.4）+ mmd_tools，奥黛塔与沃雅妮莎静态试片。不是完整游戏着色器移植；动画、物理和完整眼睛视差需要额外验证。
+已验证：Blender 4.2.23 LTS + Morningstar v1.0.2.1（内置 Festivity v3.4）+ mmd_tools，奥黛塔与沃雅妮莎静态试片，以及使用无界面 PMX 衣发解算、原 Mio 运镜的 6 秒预览。该预览的 Real-CUGAN 超分 + RIFE 插帧 4K60 试版也已获用户认可。不是完整游戏着色器移植，亦不保证任意模型/动作无穿模或插帧伪影。
 
 ## 安装
 
@@ -32,3 +32,5 @@ python tests/test_contract.py
 [渲染技能衔接](references/render-integration.md) 同步应用于本地 render-submit-queue、Paratera 与 GCP skills。GPU/实例调度仍由相应 skill 管理。本工具不自动启动云端或产生云账单。
 
 `integrations/` 保存三个 render skill 的同版新增说明：将 SKILL.addition.md 追加到对应 SKILL.md，并将 references/ 下文件复制到其 references/ 目录。不会覆盖私有机器配置。
+
+认可场景接续动画，读 [无界面物理](references/headless-physics.md)；交付高分辨率/高帧率视频，读 [超分与插帧](references/upscale-interpolate.md)。验证记录在 [动画试版指标](references/animation-validation-20261017.json)。新增 `verify_physics.py` 检查 JSON 对齐与回灌，`vmd_camera_cuts.py` 提取插帧应保留的原相机硬切；它们均为无界面 CPU 工具，不自动启动渲染或实例。
