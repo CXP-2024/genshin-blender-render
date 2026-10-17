@@ -1,0 +1,32 @@
+{
+  "python_paths": [
+    "../local/addon-parent",
+    "../local/mmd-tools-parent",
+    "../local/python-deps"
+  ],
+  "pmx": "../local/vodyanitsa/character.pmx",
+  "aux": "../local/vodyanitsa/Textures",
+  "face_materials": [
+    "颜"
+  ],
+  "face_type": 3,
+  "output": "../outputs/vodyanitsa",
+  "skip_native_face_uv": false,
+  "uv_split": 0,
+  "explicit_shadow_ramps": true,
+  "outline": "mmd",
+  "edge_weight": 0.45,
+  "edge_color": [
+    0.12,
+    0.08,
+    0.13,
+    1
+  ],
+  "samples": 48,
+  "resolution_scale": 100,
+  "light_angles": [
+    0,
+    55,
+    280
+  ]
+}

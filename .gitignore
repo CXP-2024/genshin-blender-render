@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.blend
+*.blend1
+*.pmx
+*.pmd
+*.fbx
+*.zip
+*.7z
+local/
+outputs/
+*.local.json
+.env*

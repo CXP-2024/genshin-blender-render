@@ -1,0 +1,39 @@
+---
+name: genshin-blender-render
+description: 使用 Blender 与 Morningstar Festivity 渲染原神角色，检查 PMX 与游戏贴图映射、脸部 UV/SDF、眼睛透明层、服饰 Ramp 和 MMD 原生细描边；用于角色三渲二材质复现、灰白或黑块故障诊断、全身与脸部关键帧试片。云端机器管理另用对应 render skill。
+---
+
+# 原神角色三渲二渲染
+
+先从全新模型导入建立可复现基线，再做艺术微调。保留原始文件，输出独立目录，不覆盖用户认可的场景。
+
+## 1. 锁定输入
+
+- 阅读 [配方与根因](references/recipe.md) 和 [验收清单](references/acceptance.md)。本配方验证组合为 Blender 4.2.23 LTS、Morningstar v1.0.2.1 内置 Festivity v3.4、mmd_tools；其他版本先做兼容试片。
+- 从作者发布页取得插件、官方模型及该角色/服装对应游戏纹理。来源在 [第三方说明](THIRD_PARTY_NOTICES.md)。用户已有合法本地资源时直接使用。不要把模型、贴图或第三方着色器再发布到公开仓库。
+- 记录 Blender、插件和 mmd_tools 版本/文件哈希，PMX 和全部输入贴图 SHA-256。下载校验与材质正确性是两回事。
+- 用 PMX 是为了复用本流程的 MMD 权重、表情和原生描边；原神渲染本身并非必须 PMX。FBX 需独立验证材质、眼睛与描边，不能声称等价。
+
+## 2. 先检查再绑定
+
+- 按实际像素、UV 与游戏材质族建立 diffuse → Lightmap → Shadow Ramp 映射；不能凭中文“体/裙”或文件编号猜。示例配置在 examples/，路径均相对配置文件，可改为绝对路径。
+- 脸部 UV 只统计脸部材质实际使用的 loops。检查 UVMap、UV1、UV2 的范围；Native SDF UV 混合用到的层必须非退化。有常量层则保留有效 UVMap，不强制套教程 UV 分界值。
+- `_FaceSdfMap`、Face01/02_Shadow 遮罩与旧 Festivity Face Factor 输入含义不同。未经解包/坐标/通道验证，不替换旧采样器的输入。
+- 每个衣服材质逐层检查 `Shadow Ramp` 的纹理节点，必须有图。此版本的采样器使用 256×20 Shadow_Ramp；256×8 Packed_Ramp 不能直接代替。共享节点组先复制，防止串角色/衣料。
+- 保留眼睛各层 alpha 与顺序，检查 morningstar_eye_mode。角色别名支持透明眼睛不等于完整支持所有新角色特性。只剩紫色渐变不算修好。
+
+## 3. 执行配方
+
+1. 复制示例 JSON 到工程目录，填写本地依赖、PMX、贴图、明确的脸材质原名、脸类型与输出路径。先检查模型真实脸 UV，更新配置。不要从身高猜 Face Type。
+2. 执行 `blender --background --python-exit-code 1 --python scripts/build_character.py -- /absolute/config.json`。脚本会重置当前后台进程场景，不能用于未保存的交互会话。
+3. 默认使用 EEVEE；Shader to RGB 不可因有 OptiX GPU 就切换 Cycles。更换版本/引擎/云端之前复核同一试片。
+4. 对 MMD 人物优先原生细描边：关闭作者 GN 描边后调用 mmd_tools.edge_preview_setup，保留模型 edge_scale。二者不叠加。边宽与颜色是可调整的艺术参数。
+5. 输出 audit.json、输入 manifest、打包 review.blend，以及正面/55°/280°光向的全身与脸部图。先低分辨率检查资源和管线，再出可审核尺寸。
+
+## 4. 验收后再扩展
+
+逐张查看全身、脸、眼睛、衣料、金属、发丝与描边；按验收清单记录实际通过范围。光向相同的修复前后图才可比较。不要靠关闭金属/AO/阴影或整体提亮掩盖缺图。
+
+用户认可静态结果后再扩展舞蹈、表情、眨眼、转头、物理与动画时序。静态通过不代表完整游戏视差和物理通过。
+
+本地调度读取 render-submit-queue；Paratera/GCP 分别读取对应 skill。先验证场景并打包资源，再提交既有队列。费用、实例启动/停止及 GPU 占用检查遵守对应技能和当前用户授权。

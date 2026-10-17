@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-17",
+  "scope": "Fresh import, static material smoke renders; visual inspection at reduced resolution. Animation not tested.",
+  "blender": "4.2.23 LTS",
+  "morningstar": "1.0.2.1",
+  "engine": "BLENDER_EEVEE_NEXT",
+  "characters": {
+    "odette": {
+      "source_pmx_sha256": "ab0e8fe964888c4f419bee3213bb42438ee216e83761e27fe91bd5f3def6aee1",
+      "face_uv": [
+        {
+          "object": "奥黛塔_mesh",
+          "material": "颜",
+          "layers": {
+            "UVMap": {
+              "min": [
+                0.07614299654960632,
+                0.17580699920654297
+              ],
+              "max": [
+                0.9238569736480713,
+                0.9030969738960266
+              ],
+              "nondegenerate": true
+            },
+            "UV1": {
+              "min": [
+                0.0,
+                1.0
+              ],
+              "max": [
+                0.0,
+                1.0
+              ],
+              "nondegenerate": false
+            },
+            "UV2": {
+              "min": [
+                0.0,
+                1.0
+              ],
+              "max": [
+                0.0,
+                1.0
+              ],
+              "nondegenerate": false
+            }
+          }
+        }
+      ],
+      "face_type": 3,
+      "native_outline": {
+        "disabled_author_modifiers": [
+          "奥黛塔_mesh/Genshin Outlines"
+        ],
+        "vertex_groups": [
+          "mmd_edge_preview"
+        ]
+      },
+      "ramps": [
+        {
+          "material": "HoYoverse - Genshin Body 03 | 奥黛塔_arm",
+          "image": "Avatar_Girl_Sword_Odette_Tex_Body01_Shadow_Ramp.png"
+        },
+        {
+          "material": "HoYoverse - Genshin Hair | 奥黛塔_arm",
+          "image": "Avatar_Girl_Sword_Odette_Tex_Hair_Shadow_Ramp.png"
+        },
+        {
+          "material": "HoYoverse - Genshin Body 02 | 奥黛塔_arm",
+          "image": "Avatar_Girl_Sword_Odette_Tex_Body01_Shadow_Ramp.png"
+        },
+        {
+          "material": "HoYoverse - Genshin Body 01 | 奥黛塔_arm",
+          "image": "Avatar_Girl_Sword_Odette_Tex_Body_Shadow_Ramp.png"
+        }
+      ],
+      "renders": [
+        {
+          "name": "face_front.png",
+          "sha256": "1e51718a59a6edc4157940bf2e058cbda2f6ec88f592567982338c6ce3ba2434"
+        },
+        {
+          "name": "face_opposite.png",
+          "sha256": "2eac24db30c0b0ecf11d453b58a76a373eab9cf0dbec8bb6f64fb565944a4ccc"
+        },
+        {
+          "name": "face_side.png",
+          "sha256": "f4d8f87397cef666529d56337c034412f881dade6f27511cb2fa81a7e7dbd5de"
+        },
+        {
+          "name": "fullbody_front.png",
+          "sha256": "e00d8b1704193a2cc4bd319f3de58a6be07de8b2ef5eee1af6859f5282ffd54d"
+        },
+        {
+          "name": "fullbody_opposite.png",
+          "sha256": "c5004c30d99b2b02532fcf50f1fc3d2ed0515a8a703a48530e3c183f8dd75ab7"
+        },
+        {
+          "name": "fullbody_side.png",
+          "sha256": "c0fdceb52085305577b858f9dfc4b06ad47aacbf87a7ee725e6de7f44da9d79d"
+        }
+      ]
+    },
+    "vodyanitsa": {
+      "source_pmx_sha256": "20a419604cfc093120d55d09f510dbb8eda5d7e096ab9c6c356582d401c99848",
+      "face_uv": [
+        {
+          "object": "沃雅妮莎_mesh",
+          "material": "颜",
+          "layers": {
+            "UVMap": {
+              "min": [
+                0.008301000110805035,
+                0.018522024154663086
+              ],
+              "max": [
+                0.9916989803314209,
+                0.8173980116844177
+              ],
+              "nondegenerate": true
+            },
+            "UV1": {
+              "min": [
+                0.0,
+                0.0
+              ],
+              "max": [
+                0.9049280285835266,
+                0.8173980116844177
+              ],
+              "nondegenerate": true
+            },
+            "UV2": {
+              "min": [
+                0.0,
+                0.0
+              ],
+              "max": [
+                0.0,
+                0.0
+              ],
+              "nondegenerate": false
+            }
+          }
+        }
+      ],
+      "face_type": 3,
+      "native_outline": {
+        "disabled_author_modifiers": [
+          "沃雅妮莎_mesh/Genshin Outlines"
+        ],
+        "vertex_groups": [
+          "mmd_edge_preview"
+        ]
+      },
+      "ramps": [
+        {
+          "material": "HoYoverse - Genshin Body 01 | 沃雅妮莎_arm",
+          "image": "Avatar_Girl_Catalyst_Vodyanitsa_Tex_Body01_Shadow_Ramp.png"
+        },
+        {
+          "material": "HoYoverse - Genshin Hair | 沃雅妮莎_arm",
+          "image": "Avatar_Girl_Catalyst_Vodyanitsa_Tex_Hair_Shadow_Ramp.png"
+        },
+        {
+          "material": "HoYoverse - Genshin Body 02 | 沃雅妮莎_arm",
+          "image": "Avatar_Girl_Catalyst_Vodyanitsa_Tex_Body_Shadow_Ramp.png"
+        },
+        {
+          "material": "HoYoverse - Genshin Body 03 | 沃雅妮莎_arm",
+          "image": "Avatar_Girl_Catalyst_Vodyanitsa_Tex_Body_Shadow_Ramp.png"
+        }
+      ],
+      "renders": [
+        {
+          "name": "face_front.png",
+          "sha256": "0b0225050cdf965725fcf9c33b0fa13073fce940109d093d93f9bd25583cd86a"
+        },
+        {
+          "name": "face_opposite.png",
+          "sha256": "0d4da22d1480edf686568ba9da0595fc529e997cc9b42f8a171e746af1796718"
+        },
+        {
+          "name": "face_side.png",
+          "sha256": "5ea73c013dc31f1633ef5384f8865817351eaabde183c41202eaa2768fbdf88a"
+        },
+        {
+          "name": "fullbody_front.png",
+          "sha256": "fa4bfb4a0eae4893d212ffd8a128b5d28b5674dc609305fbc4ad9e4a78e86904"
+        },
+        {
+          "name": "fullbody_opposite.png",
+          "sha256": "65624efe2b16548e6292c01a10e9c8eb1f32efb0ccd63a8d7a4a305b8e2ab481"
+        },
+        {
+          "name": "fullbody_side.png",
+          "sha256": "ca201ff20c3ed493314aeea95f553d38263add50611488ac4820b65c242d1bea"
+        }
+      ]
+    }
+  }
+}

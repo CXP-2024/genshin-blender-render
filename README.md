@@ -1,0 +1,34 @@
+# genshin-blender-render
+
+给 Codex 使用的原神 Blender 三渲二 skill：将一次实际修复整理为可复现的材质流程，覆盖脸 UV、眼睛透明层、服饰 Ramp 和 mmd_tools 原生细描边。
+
+已验证：Blender 4.2.23 LTS + Morningstar v1.0.2.1（内置 Festivity v3.4）+ mmd_tools，奥黛塔与沃雅妮莎静态试片。不是完整游戏着色器移植；动画、物理和完整眼睛视差需要额外验证。
+
+## 安装
+
+克隆到 Codex skills 目录：
+
+```powershell
+git clone git@github.com:CXP-2024/genshin-blender-render.git "$env:USERPROFILE/.codex/skills/genshin-blender-render"
+```
+
+在新会话调用 `$genshin-blender-render`。也可直接阅读 [SKILL.md](SKILL.md)。第三方依赖与模型自行取得，见 [说明](THIRD_PARTY_NOTICES.md)。
+
+## 渲染
+
+复制 examples 中配置并填好路径、模型实际脸材质名称，先阅读 [配方](references/recipe.md)。所有路径相对配置文件解析。
+
+```powershell
+& 'D:/Blender/blender.exe' --background --python-exit-code 1 --python ./scripts/build_character.py -- ./character.local.json
+```
+
+默认全身 900×1400、脸 1000×1000，三种光向；初次检查可降低 resolution_scale。输出输入哈希、操作与材质审计、packed review.blend 和 PNG。第三方文件及这些渲染工程放在 gitignore 的 outputs 或仓库之外。
+
+```powershell
+python scripts/input_manifest.py D:/assets/character --output manifest.local.json
+python tests/test_contract.py
+```
+
+[渲染技能衔接](references/render-integration.md) 同步应用于本地 render-submit-queue、Paratera 与 GCP skills。GPU/实例调度仍由相应 skill 管理。本工具不自动启动云端或产生云账单。
+
+`integrations/` 保存三个 render skill 的同版新增说明：将 SKILL.addition.md 追加到对应 SKILL.md，并将 references/ 下文件复制到其 references/ 目录。不会覆盖私有机器配置。
