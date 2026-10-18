@@ -7,6 +7,10 @@ description: 使用 Blender 与 Morningstar Festivity 复现原神人物三渲�
 
 先从全新模型导入建立可复现基线，再做艺术微调。保留原始文件，输出独立目录，不覆盖用户认可的场景。
 
+## 接续已认可的成片
+
+复现天天天国 2026-10-18 最终混合版时，先读 [最终外观与混合物理配方](references/final-recipe-20261018.md)，再读安装内的 `local/reproduction-20261018.md` 和资产哈希清单。该版本采用 R9 材质/灯光与 R11 局部衣带物理，不能从早期静态默认参数或全量重解物理替代。通用新角色导入仍按下文；本片的身体索引与时间段不可套到其他模型。
+
 ## 1. 锁定输入
 
 - 阅读 [配方与根因](references/recipe.md) 和 [验收清单](references/acceptance.md)。本配方验证组合为 Blender 4.2.23 LTS、Morningstar v1.0.2.1 内置 Festivity v3.4、mmd_tools；其他版本先做兼容试片。
