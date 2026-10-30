@@ -40,3 +40,5 @@ python tests/test_contract.py
 ## 当前成片路线
 
 《愛包ダンスホール》v35 用的是 Blender 5.2.1 EEVEE 自定义卡通材质（Emission + Shader to RGB），不是 Festivity：1080p30、32 采样，屏幕定宽 MMD 描边，RTX PRO 6000 云端渲染分段回传，本地超分插帧到 4K60。材质、灯光、合成参数、检查项和成本见 [EEVEE 卡通路线](references/eevee-toon-route-20261030.md)。同一文档记录了只有 BaseColor 的模型如何选路线，以及 HoyoToon 原型。
+
+复刻参考视频或另一角色的效果时，按 [严格复刻迭代方法](references/replicate-effect-iteration.md) 执行；`scripts/compare_frames.py` 生成同帧并排审核图。

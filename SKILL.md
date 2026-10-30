@@ -13,6 +13,10 @@ description: 使用 Blender 与 Morningstar Festivity 复现原神人物三渲�
 - Tripo、VRM 等只有 BaseColor 的模型：走 [Blender 5.2 EEVEE 自定义卡通路线](references/eevee-toon-route-20261030.md)，这是《愛包》v35 成片的做法，不是原神着色器。
 - 已认可的场景：沿用原路线，不互相混用参数。
 
+## 复刻参考效果
+
+用户要求一比一、99% 或对齐另一个角色的效果时，先读 [严格复刻迭代方法](references/replicate-effect-iteration.md)：先查可用资源，定义“一样”的标准，对齐帧再比外观，同角色通过后再迁移，按层迭代并如实报告差距。
+
 ## 接续已认可的成片
 
 复现天天天国 2026-10-18 最终混合版时，先读 [最终外观与混合物理配方](references/final-recipe-20261018.md)，再读安装内的 `local/reproduction-20261018.md` 和资产哈希清单。该版本采用 R9 材质/灯光与 R11 局部衣带物理，不能从早期静态默认参数或全量重解物理替代。通用新角色导入仍按下文；本片的身体索引与时间段不可套到其他模型。
