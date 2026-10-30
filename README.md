@@ -36,3 +36,7 @@ python tests/test_contract.py
 认可场景接续动画，读 [无界面物理](references/headless-physics.md)；交付高分辨率/高帧率视频，读 [超分与插帧](references/upscale-interpolate.md)。验证记录在 [动画试版指标](references/animation-validation-20261017.json)。新增 `verify_physics.py` 检查 JSON 对齐与回灌，`vmd_camera_cuts.py` 提取插帧应保留的原相机硬切；它们均为无界面 CPU 工具，不自动启动渲染或实例。
 
 1080p30 整首歌 → 4K60 的实测流程、切镜 SSIM 阈值，以及 x264 / NVENC（H.264、HEVC、AV1）编码器的速度与画质对比，见 [超分与插帧](references/upscale-interpolate.md) 末尾两节。新任务默认使用 NVENC，同一部片中途不换编码器。
+
+## 当前成片路线
+
+《愛包ダンスホール》v35 用的是 Blender 5.2.1 EEVEE 自定义卡通材质（Emission + Shader to RGB），不是 Festivity：1080p30、32 采样，屏幕定宽 MMD 描边，RTX PRO 6000 云端渲染分段回传，本地超分插帧到 4K60。材质、灯光、合成参数、检查项和成本见 [EEVEE 卡通路线](references/eevee-toon-route-20261030.md)。同一文档记录了只有 BaseColor 的模型如何选路线，以及 HoyoToon 原型。

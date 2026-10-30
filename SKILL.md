@@ -1,11 +1,17 @@
 ---
 name: genshin-blender-render
-description: 使用 Blender 与 Morningstar Festivity 复现原神人物三渲二材质、脸部阴影、眼睛与 MMD 细描边，接续无界面 PMX 衣发物理、原 VMD 运镜，以及动漫超分和插帧视频交付。云端机器管理另用对应 render skill。
+description: 使用 Blender 与 Morningstar Festivity 复现原神人物三渲二材质、脸部阴影、眼睛与 MMD 细描边，接续无界面 PMX 衣发物理、原 VMD 运镜，以及动漫超分和插帧视频交付。同时记录 Blender 5.2 EEVEE 自定义卡通路线，用于 Tripo、VRM 等没有游戏贴图的模型。云端机器管理另用对应 render skill。
 ---
 
 # 原神角色三渲二渲染
 
 先从全新模型导入建立可复现基线，再做艺术微调。保留原始文件，输出独立目录，不覆盖用户认可的场景。
+
+## 先选路线
+
+- 官方 PMX + 游戏贴图：走下文 Festivity 流程，需要更接近游戏时看 HoyoToon 原型。
+- Tripo、VRM 等只有 BaseColor 的模型：走 [Blender 5.2 EEVEE 自定义卡通路线](references/eevee-toon-route-20261030.md)，这是《愛包》v35 成片的做法，不是原神着色器。
+- 已认可的场景：沿用原路线，不互相混用参数。
 
 ## 接续已认可的成片
 
